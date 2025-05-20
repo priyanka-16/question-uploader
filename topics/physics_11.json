@@ -1,0 +1,149 @@
+{
+    "Units and Measurements": [
+        "Introduction",
+        "The international system of units",
+        "Significant figures",
+        "Dimensions of physical quantities",
+        "Dimensional formulae and dimensional equations",
+        "Dimensional analysis and its applications"
+    ],
+    "Motion in a Straight Line": [
+        "Introduction",
+        "Instantaneous velocity and speed",
+        "Acceleration",
+        "Kinematic equations for uniformly accelerated motion"
+    ],
+    "Motion in a Plane": [
+        "Introduction",
+        "Scalars and vectors",
+        "Multiplication of vectors by real numbers",
+        "Addition and subtraction of vectors – graphical method",
+        "Resolution of vectors",
+        "Vector addition – analytical method",
+        "Motion in a plane",
+        "Motion in a plane with constant acceleration",
+        "Projectile motion",
+        "Uniform circular motion"
+    ],
+    "Laws of Motion": [
+        "Introduction",
+        "Aristotle’s fallacy",
+        "The law of inertia",
+        "Newton’s first law of motion",
+        "Newton’s second law of motion",
+        "Newton’s third law of motion",
+        "Conservation of momentum",
+        "Equilibrium of a particle",
+        "Common forces in mechanics",
+        "Circular motion",
+        "Solving problems in mechanics"
+    ],
+    "Work, Energy and Power": [
+        "Introduction",
+        "Notions of work and kinetic energy: The work-energy theorem",
+        "Work",
+        "Kinetic energy",
+        "Work done by a variable force",
+        "The work-energy theorem for a variable force",
+        "The concept of potential energy",
+        "The conservation of mechanical energy",
+        "The potential energy of a spring",
+        "Power",
+        "Collisions"
+    ],
+    "System of Particles and Rotational Motion": [
+        "Introduction",
+        "Centre of mass",
+        "Motion of centre of mass",
+        "Linear momentum of a system of particles",
+        "Vector product of two vectors",
+        "Angular velocity and its relation with linear velocity",
+        "Torque and angular momentum",
+        "Equilibrium of a rigid body",
+        "Moment of inertia",
+        "Kinematics of rotational motion about a fixed axis",
+        "Dynamics of rotational motion about a fixed axis",
+        "Angular momentum in case of rotations about a fixed axis"
+    ],
+    "Gravitation": [
+        "Introduction",
+        "Kepler’s laws",
+        "Universal law of gravitation",
+        "The gravitational constant",
+        "Acceleration due to gravity of the earth",
+        "Acceleration due to gravity below and above the surface of earth",
+        "Gravitational potential energy",
+        "Escape speed",
+        "Earth satellites",
+        "Energy of an orbiting satellite"
+    ],
+    "Mechanical Properties of Solids": [
+        "Introduction",
+        "Stress and strain",
+        "Hooke’s law",
+        "Stress-strain curve",
+        "Elastic moduli",
+        "Applications of elastic behaviour of materials"
+    ],
+    "Mechanical Properties of Fluids": [
+        "Introduction",
+        "Pressure",
+        "Streamline flow",
+        "Bernoulli’s principle",
+        "Viscosity",
+        "Surface tension"
+    ],
+    "Thermal Properties of Matter": [
+        "Introduction",
+        "Temperature and heat",
+        "Measurement of temperature",
+        "Ideal-gas equation and absolute temperature",
+        "Thermal expansion",
+        "Specific heat capacity",
+        "Calorimetry",
+        "Change of state",
+        "Heat transfer",
+        "Newton’s law of cooling"
+    ],
+    "Thermodynamics": [
+        "Introduction",
+        "Thermal equilibrium",
+        "Zeroth law of thermodynamics",
+        "Heat, internal energy and work",
+        "First law of thermodynamics",
+        "Specific heat capacity",
+        "Thermodynamic state variables and equation of state",
+        "Thermodynamic processes",
+        "Second law of thermodynamics",
+        "Reversible and irreversible processes",
+        "Carnot engine"
+    ],
+    "Kinetic Theory": [
+        "Introduction",
+        "Molecular nature of matter",
+        "Behaviour of gases",
+        "Kinetic theory of an ideal gas",
+        "Law of equipartition of energy",
+        "Specific heat capacity",
+        "Mean free path"
+    ],
+    "Oscillations": [
+        "Introduction",
+        "Periodic and oscilatory motions",
+        "Simple harmonic motion",
+        "Simple harmonic motion and uniform circular motion",
+        "Velocity and acceleration in simple harmonic motion",
+        "Force law for simple harmonic motion",
+        "Energy in simple harmonic motion",
+        "The Simple Pendulum"
+    ],
+    "Waves": [
+        "Introduction",
+        "Transverse and longitudinal waves",
+        "Displacement relation in a progressive wave",
+        "The speed of a travelling wave",
+        "The principle of superposition of waves",
+        "Reflection of waves",
+        "Beats"
+    ]
+}
