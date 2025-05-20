@@ -1,0 +1,96 @@
+{
+    "Solutions": [
+        "Types of Solutions",
+        "Expressing Concentration of Solutions",
+        "Solubility",
+        "Vapour Pressure of Liquid Solutions",
+        "Ideal and Non-ideal Solutions",
+        "Colligative Properties and Determination of Molar Mass",
+        "Abnormal Molar Masses"
+    ],
+    "Electrochemistry": [
+        "Electrochemical Cells",
+        "Galvanic Cells",
+        "Nernst Equation",
+        "Conductance of Electrolytic Solutions",
+        "Electrolytic Cells and Electrolysis",
+        "Batteries",
+        "Fuel Cells",
+        "Corrosion"
+    ],
+    "Chemical Kinetics": [
+        "Rate of a Chemical Reaction",
+        "Factors Influencing Rate of a Reaction",
+        "Integrated Rate Equations",
+        "Temperature Dependence of the Rate of a Reaction",
+        "Collision Theory of Chemical Reactions"
+    ],
+    "The d-and f-Block Elements": [
+        "Position in the Periodic Table",
+        "Electronic Configurations of the d-Block Elements",
+        "General Properties of the Transition Elements (d-Block)",
+        "Some Important Compounds of Transition Elements",
+        "The Lanthanoids",
+        "The Actinoids",
+        "Some Applications of d- and f-Block Elements"
+    ],
+    "Coordination Compounds": [
+        "Werner's Theory of Coordination Compounds",
+        "Definitions of Some Important Terms Pertaining to Coordination Compounds",
+        "Nomenclature of Coordination Compounds",
+        "Isomerism in Coordination Compounds",
+        "Bonding in Coordination Compounds",
+        "Bonding in Metal Carbonyls",
+        "Importance and Applications of Coordination Compounds"
+    ],
+    "Haloalkanes and Haloarenes": [
+        "Classification",
+        "Nomenclature",
+        "Nature of C–X Bond",
+        "Methods of Preparation of Haloalkanes",
+        "Preparation of Haloarenes",
+        "Physical Properties",
+        "Chemical Reactions",
+        "Polyhalogen Compounds"
+    ],
+    "Alcohols, Phenols and Ethers": [
+        "Classification",
+        "Nomenclature",
+        "Structures of Functional Groups",
+        "Alcohols and Phenols",
+        "Some Commercially Important Alcohols",
+        "Ethers"
+    ],
+    "Aldehydes, Ketones and Carboxylic Acids": [
+        "Nomenclature and Structure of Carbonyl Group",
+        "Preparation of Aldehydes and Ketones",
+        "Physical Properties",
+        "Chemical Reactions",
+        "Uses of Aldehydes and Ketones",
+        "Nomenclature and Structure of Carboxyl Group",
+        "Methods of Preparation of Carboxylic Acids",
+        "Physical Properties",
+        "Chemical Reactions",
+        "Uses of Carboxylic Acids"
+    ],
+    "Amines": [
+        "Structure of Amines",
+        "Classification",
+        "Nomenclature",
+        "Preparation of Amines",
+        "Physical Properties",
+        "Chemical Reactions",
+        "Method of Preparation of Diazonium Salts",
+        "Physical Properties",
+        "Chemical Reactions",
+        "Importance of Diazonium Salts in Synthesis of Aromatic Compounds"
+    ],
+    "Biomolecules": [
+        "Carbohydrates",
+        "Proteins",
+        "Enzymes",
+        "Vitamins",
+        "Nucleic Acids",
+        "Hormones"
+    ]
+}

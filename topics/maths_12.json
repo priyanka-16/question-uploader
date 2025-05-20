@@ -1,0 +1,93 @@
+{
+    "Relations and Functions": [
+        "Introduction",
+        "Types of Relations",
+        "Types of Functions",
+        "Composition of Functions and Invertible Function"
+    ],
+    "Inverse Trigonometric Functions": [
+        "Introduction",
+        "Basic Concepts",
+        "Properties of Inverse Trigonometric Functions"
+    ],
+    "Matrices": [
+        "Introduction",
+        "Matrix",
+        "Types of Matrices",
+        "Operations on Matrices",
+        "Transpose of a Matrix",
+        "Symmetric and Skew Symmetric Matrices",
+        "Invertible Matrices"
+    ],
+    "Determinants": [
+        "Introduction",
+        "Determinant",
+        "Area of a Triangle",
+        "Minors and Cofactors",
+        "Adjoint and Inverse of a Matrix",
+        "Applications of Determinants and Matrices"
+    ],
+    "Continuity and Differentiability": [
+        "Introduction",
+        "Continuity",
+        "Differentiability",
+        "Exponential and Logarithmic Functions",
+        "Logarithmic Differentiation",
+        "Derivatives of Functions in Parametric Forms",
+        "Second Order Derivative"
+    ],
+    "Application of Derivatives": [
+        "Introduction",
+        "Rate of Change of Quantities",
+        "Increasing and Decreasing Functions",
+        "Maxima and Minima"
+    ],
+    "Integrals": [
+        "Introduction",
+        "Integration as an Inverse Process of Differentiation",
+        "Methods of Integration",
+        "Integrals of Some Particular Functions",
+        "Integration by Partial Fractions",
+        "Integration by Parts",
+        "Definite Integral",
+        "Fundamental Theorem of Calculus",
+        "Evaluation of Definite Integrals by Substitution",
+        "Some Properties of Definite Integrals"
+    ],
+    "Application of Integrals": [
+        "Introduction",
+        "Area under Simple Curves"
+    ],
+    "Differential Equations": [
+        "Introduction",
+        "Basic Concepts",
+        "General and Particular Solutions of a Differential Equation",
+        "Methods of Solving First Order, First Degree Differential Equations"
+    ],
+    "Vector Algebra": [
+        "Introduction",
+        "Some Basic Concepts",
+        "Types of Vectors",
+        "Addition of Vectors",
+        "Multiplication of a Vector by a Scalar",
+        "Product of Two Vectors"
+    ],
+    "Three Dimensional Geometry": [
+        "Introduction",
+        "Direction Cosines and Direction Ratios of a Line",
+        "Equation of a Line in Space",
+        "Angle between Two Lines",
+        "Shortest Distance between Two Lines"
+    ],
+    "Linear Programming": [
+        "Introduction",
+        "Linear Programming Problem and its Mathematical Formulation"
+    ],
+    "Probability": [
+        "Introduction",
+        "Conditional Probability",
+        "Multiplication Theorem on Probability",
+        "Independent Events",
+        "Bayes' Theorem"
+    ]
+}

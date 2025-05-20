@@ -1,0 +1,99 @@
+{
+    "The Living World": [
+        "Characteristics of Living Organisms",
+        "Diversity of Life",
+        "Taxonomy and Systematics",
+        "Binomial Nomenclature"
+    ],
+    "Biological Classification": [
+        "Five Kingdom Classification",
+        "Monera, Protista, Fungi",
+        "Lichens and Viruses"
+    ],
+    "Plant Kingdom": [
+        "Algae",
+        "Bryophytes",
+        "Pteridophytes",
+        "Gymnosperms",
+        "Angiosperms"
+    ],
+    "Animal Kingdom": [
+        "Levels of Organization",
+        "Symmetry and Coelom",
+        "Phyla Classification"
+    ],
+    "Morphology of Flowering Plants": [
+        "Root, Stem, Leaf",
+        "Inflorescence",
+        "Flower, Fruit, Seed",
+        "Families – Fabaceae, Solanaceae, Liliaceae"
+    ],
+    "Anatomy of Flowering Plants": [
+        "Tissues",
+        "Anatomy of Dicot and Monocot Root, Stem, Leaf",
+        "Secondary Growth"
+    ],
+    "Structural Organisation in Animals": [
+        "Animal Tissues",
+        "Cockroach Anatomy"
+    ],
+    "Cell : The Unit of Life": [
+        "Cell Theory",
+        "Prokaryotic vs Eukaryotic Cells",
+        "Cell Organelles"
+    ],
+    "Biomolecules": [
+        "Carbohydrates, Proteins, Lipids",
+        "Nucleic Acids",
+        "Enzymes"
+    ],
+    "Cell Cycle and Cell Division": [
+        "Mitosis",
+        "Meiosis",
+        "Cell Cycle Phases"
+    ],
+    "Photosynthesis in Higher Plants": [
+        "Light Reactions",
+        "Dark Reactions",
+        "C3, C4, and CAM Pathways"
+    ],
+    "Respiration in Plants": [
+        "Glycolysis",
+        "Krebs Cycle",
+        "Electron Transport Chain"
+    ],
+    "Plant Growth and Development": [
+        "Growth Regulators",
+        "Photoperiodism",
+        "Vernalisation"
+    ],
+    "Breathing and Exchange of Gases": [
+        "Respiratory System in Humans",
+        "Mechanism of Breathing",
+        "Gas Exchange and Transport"
+    ],
+    "Body Fluids and Circulation": [
+        "Blood Composition",
+        "Heart Structure",
+        "Circulatory Pathways"
+    ],
+    "Excretory Products and their Elimination": [
+        "Human Excretory System",
+        "Urine Formation",
+        "Regulation of Kidney Function"
+    ],
+    "Locomotion and Movement": [
+        "Muscle Types and Function",
+        "Skeletal System",
+        "Mechanism of Muscle Contraction"
+    ],
+    "Neural Control and Coordination": [
+        "Neuron Structure and Function",
+        "Central Nervous System",
+        "Reflex Action"
+    ],
+    "Chemical Coordination and Integration": [
+        "Endocrine Glands and Hormones",
+        "Mechanism of Hormone Action"
+    ]
+}

@@ -1,0 +1,92 @@
+{
+    "Some Basic Concepts of Chemistry": [
+        "Importance of Chemistry",
+        "Nature of Matter",
+        "Properties of Matter and their Measurement",
+        "Uncertainty in Measurement",
+        "Laws of Chemical Combinations",
+        "Dalton’s Atomic Theory",
+        "Atomic and Molecular Masses",
+        "Mole Concept and Molar Masses",
+        "Percentage Composition",
+        "Stoichiometry and Stoichiometric Calculations"
+    ],
+    "Structure of Atom": [
+        "Discovery of Sub-atomic Particles",
+        "Atomic Models",
+        "Developments Leading to the Bohr’s Model of Atom",
+        "Bohr’s Model for Hydrogen Atom",
+        "Towards Quantum Mechanical Model of the Atom",
+        "Quantum Mechanical Model of Atom"
+    ],
+    "Classification of Elements and Periodicity in Properties": [
+        "Why do we Need to Classify Elements?",
+        "Genesis of Periodic Classification",
+        "Modern Periodic Law and the Present Form of the Periodic Table",
+        "Nomenclature of Elements with Atomic Numbers > 100",
+        "Electronic Configurations of Elements and the Periodic Table",
+        "Electronic Configurations and Types of Elements: s-, p-, d-, f- Blocks",
+        "Periodic Trends in Properties of Elements"
+    ],
+    "Chemical Bonding and Molecular Structure": [
+        "Kössel-Lewis Approach to Chemical Bonding",
+        "Ionic or Electrovalent Bond",
+        "Bond Parameters",
+        "The Valence Shell Electron Pair Repulsion (VSEPR) Theory",
+        "Valence Bond Theory",
+        "Hybridisation",
+        "Molecular Orbital Theory",
+        "Bonding in Some Homonuclear Diatomic Molecules",
+        "Hydrogen Bonding"
+    ],
+    "Thermodynamics": [
+        "Thermodynamic Terms",
+        "Applications",
+        "Measurement of ∆U and ∆H: Calorimetry",
+        "Enthalpy Change, ∆rH of a Reaction – Reaction Enthalpy",
+        "Enthalpies for Different Types of Reactions",
+        "Spontaneity",
+        "Gibbs Energy Change and Equilibrium"
+    ],
+    "Equilibrium": [
+        "Equilibrium in Physical Processes",
+        "Equilibrium in Chemical Processes – Dynamic Equilibrium",
+        "Law of Chemical Equilibrium and Equilibrium Constant",
+        "Homogeneous Equilibria",
+        "Heterogeneous Equilibria",
+        "Applications of Equilibrium Constants",
+        "Relationship between Equilibrium Constant K, Reaction Quotient Q and Gibbs Energy G",
+        "Factors Affecting Equilibria",
+        "Ionic Equilibrium in Solution",
+        "Acids, Bases and Salts",
+        "Ionization of Acids and Bases",
+        "Buffer Solutions",
+        "Solubility Equilibria of Sparingly Soluble Salts"
+    ],
+    "Redox Reactions": [
+        "Classical Idea of Redox Reactions-Oxidation and Reduction Reactions",
+        "Redox Reactions in Terms of Electron Transfer Reactions",
+        "Oxidation Number",
+        "Redox Reactions and Electrode Processes"
+    ],
+    "Organic Chemistry – Some Basic Principles and Techniques": [
+        "General Introduction",
+        "Tetravalence of Carbon: Shapes of Organic Compounds",
+        "Structural Representations of Organic Compounds",
+        "Classification of Organic Compounds",
+        "Nomenclature of Organic Compounds",
+        "Isomerism",
+        "Fundamental Concepts in Organic Reaction Mechanism",
+        "Methods of Purification of Organic Compounds",
+        "Qualitative Analysis of Organic Compounds",
+        "Quantitative Analysis"
+    ],
+    "Hydrocarbons": [
+        "Classification",
+        "Alkanes",
+        "Alkenes",
+        "Alkynes",
+        "Aromatic Hydrocarbon",
+        "Carcinogenicity and Toxicity"
+    ]
+}

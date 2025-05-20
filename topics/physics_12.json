@@ -1,0 +1,95 @@
+{
+    "Electric Charges and Fields": [
+        "Introduction",
+        "Electric Charge",
+        "Conductors and Insulators",
+        "Basic Properties of Electric Charge",
+        "Coulomb’s Law",
+        "Forces between Multiple Charges",
+        "Electric Field",
+        "Electric Field Lines",
+        "Electric Flux",
+        "Electric Dipole",
+        "Dipole in a Uniform External Field",
+        "Continuous Charge Distribution",
+        "Gauss’s Law",
+        "Applications of Gauss’s Law"
+    ],
+    "Electrostatic Potential and Capacitance": [
+        "Introduction",
+        "Electrostatic Potential",
+        "Potential due to a Point Charge",
+        "Potential due to an Electric Dipole",
+        "Potential due to a System of Charges",
+        "Equipotential Surfaces",
+        "Potential Energy of a System of Charges",
+        "Potential Energy in an External Field",
+        "Electrostatics of Conductors",
+        "Dielectrics and Polarisation",
+        "Capacitors and Capacitance",
+        "The Parallel Plate Capacitor",
+        "Effect of Dielectric on Capacitance",
+        "Combination of Capacitors",
+        "Energy Stored in a Capacitor"
+    ],
+    "Current Electricity": [
+        "Introduction",
+        "Electric Current",
+        "Electric Currents in Conductors",
+        "Ohm’s law",
+        "Drift of Electrons and the Origin of Resistivity",
+        "Limitations of Ohm’s Law",
+        "Resistivity of Various Materials",
+        "Temperature Dependence of Resistivity",
+        "Electrical Energy, Power",
+        "Cells, emf, Internal Resistance",
+        "Cells in Series and in Parallel",
+        "Kirchhoff’s Rules",
+        "Wheatstone Bridge"
+    ],
+    "Moving Charges and Magnetism": [
+        "Introduction",
+        "Magnetic Force",
+        "Motion in a Magnetic Field",
+        "Magnetic Field due to a Current Element, Biot-Savart Law",
+        "Magnetic Field on the Axis of a Circular Current Loop",
+        "Ampere’s Circuital Law",
+        "The Solenoid",
+        "Force between Two Parallel Currents, the Ampere",
+        "Torque on Current Loop, Magnetic Dipole",
+        "The Moving Coil Galvanometer"
+    ],
+    "Magnetism and Matter": [
+        "Introduction",
+        "The Bar Magnet",
+        "Magnetism and Gauss’s Law",
+        "Magnetisation and Magnetic Intensity",
+        "Magnetic Properties of Materials"
+    ],
+    "Electromagnetic Induction": [
+        "Introduction",
+        "The Experiments of Faraday and Henry",
+        "Magnetic Flux",
+        "Faraday’s Law of Induction",
+        "Lenz’s Law and Conservation of Energy",
+        "Motional Electromotive Force",
+        "Inductance",
+        "AC Generator"
+    ],
+    "Alternating Current": [
+        "Introduction",
+        "AC Voltage Applied to a Resistor",
+        "Representation of AC Current and Voltage by Rotating Vectors — Phasors",
+        "AC Voltage Applied to an Inductor",
+        "AC Voltage Applied to a Capacitor",
+        "AC Voltage Applied to a Series LCR Circuit",
+        "Power in AC Circuit: The Power Factor",
+        "Transformers"
+    ],
+    "Electromagnetic Waves": [
+        "Introduction",
+        "Displacement Current",
+        "Electromagnetic Waves",
+        "Electromagnetic Spectrum"
+    ]
+}

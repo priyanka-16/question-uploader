@@ -1,0 +1,93 @@
+{
+    "Sets": [
+        "Introduction",
+        "Sets and their Representations",
+        "The Empty Set",
+        "Finite and Infinite Sets",
+        "Equal Sets",
+        "Subsets",
+        "Universal Set",
+        "Venn Diagrams",
+        "Operations on Sets",
+        "Complement of a Set"
+    ],
+    "Relations and Functions": [
+        "Introduction",
+        "Cartesian Product of Sets",
+        "Relations",
+        "Functions"
+    ],
+    "Trigonometric Functions": [
+        "Introduction",
+        "Angles",
+        "Trigonometric Functions",
+        "Trigonometric Functions of Sum and Difference of Two Angles"
+    ],
+    "Complex Numbers and Quadratic Equations": [
+        "Introduction",
+        "Complex Numbers",
+        "Algebra of Complex Numbers",
+        "The Modulus and the Conjugate of a Complex Number",
+        "Argand Plane and Polar Representation"
+    ],
+    "Linear Inequalities": [
+        "Introduction",
+        "Inequalities",
+        "Algebraic Solutions of Linear Inequalities in One Variable and their Graphical Representation"
+    ],
+    "Permutations and Combinations": [
+        "Introduction",
+        "Fundamental Principle of Counting",
+        "Permutations",
+        "Combinations"
+    ],
+    "Binomial Theorem": [
+        "Introduction",
+        "Binomial Theorem for Positive Integral Indices"
+    ],
+    "Sequences and Series": [
+        "Introduction",
+        "Sequences",
+        "Series",
+        "Geometric Progression (G.P.)",
+        "Relationship Between A.M. and G.M."
+    ],
+    "Straight Lines": [
+        "Introduction",
+        "Slope of a Line",
+        "Various Forms of the Equation of a Line",
+        "Distance of a Point From a Line"
+    ],
+    "Conic Sections": [
+        "Introduction",
+        "Sections of a Cone",
+        "Circle",
+        "Parabola",
+        "Ellipse",
+        "Hyperbola"
+    ],
+    "Introduction to Three Dimensional Geometry": [
+        "Introduction",
+        "Coordinate Axes and Coordinate Planes in Three Dimensional Space",
+        "Coordinates of a Point in Space",
+        "Distance between Two Points"
+    ],
+    "Limits and Derivatives": [
+        "Introduction",
+        "Intuitive Idea of Derivatives",
+        "Limits",
+        "Limits of Trigonometric Functions",
+        "Derivatives"
+    ],
+    "Statistics": [
+        "Introduction",
+        "Measures of Dispersion",
+        "Range",
+        "Mean Deviation",
+        "Variance and Standard Deviation"
+    ],
+    "Probability": [
+        "Event",
+        "Axiomatic Approach to Probability"
+    ]
+}
