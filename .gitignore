@@ -6,3 +6,5 @@ __pycache__/
 # System
 .DS_Store
 .env
+credentials.json
+token.json
