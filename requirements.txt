@@ -18,3 +18,5 @@ Pillow
 google-api-python-client
 google-auth
 google-auth-oauthlib  # Optional if using InstalledAppFlow locally
+google-generativeai==0.8.5
+
