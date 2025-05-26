@@ -9,6 +9,7 @@ SCOPES = ['https://www.googleapis.com/auth/drive.file']
 
 def get_drive_service():
     creds = None
+    print("now trying to upload")
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     if not creds or not creds.valid:
