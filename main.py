@@ -9,7 +9,7 @@ from db_handler import save_to_mongodb
 subject_ids={"maths":"66cf8a7fb60054fa64dad203","physics":"66cf8ad9b60054fa64dad207","biology":"66cf8aeab60054fa64dad20b","chemistry":"66cf8ae3b60054fa64dad209"}
 generativeai.configure(api_key=st.secrets['gemini']['api_key'])
 
-PROMPT_TEMPLATE = """Please pick question number {quenos} in page number {question_page_numbers} and convert to text / latex code in following json format. Answers and solutions of all question are also given later in page number {solution_page_numbers} in the same pdf. Please match question number and pick answer and solutionText from these pages as well.
+PROMPT_TEMPLATE = """Please pick question number {quenos} below HOME ASSIGNMENT section in page number {question_page_numbers} and convert to text / latex code in following json format. Answers and solutions of all question are also given later in page number {solution_page_numbers} in the same pdf. Please match question number and pick answer and solutionText from these pages as well.
     class: {class_},
     subject: {subject_id},
     topic: {topic},
@@ -17,16 +17,17 @@ PROMPT_TEMPLATE = """Please pick question number {quenos} in page number {questi
     difficulty: Joi.number().integer().min(1).max(5).required(),
     type: "MCQ",
     queText: Joi.string().allow(null, ""),
-    queImg: Joi.string().allow(null, ""), //If diagram in question is there put yes here
+    queImg: Joi.string().allow(null, ""), //If diagram in question or option is there put yes here
     optA: Joi.string().allow(null, ""),
     optB: Joi.string().allow(null, ""),
     optC: Joi.string().allow(null, ""),
     optD: Joi.string().allow(null, ""),
     answer: Joi.string().required().valid("A", "B", "C", "D"),
     solutionText: Joi.string().allow(null, ""),
-    solutionImage: Joi.string().allow(null, ""),
+    solutionImage: Joi.string().allow(null, ""), //If diagram in solution is there put yes here
     source: :”Karnataka study material”,
-    pagenum:Joi.number().integer(), #(pdf page number not the one written in top right)
+    que_pagenum:Joi.number().integer(), #(pdf page number not the one written in top right)
+    solution_pagenum:Joi.number().integer(), #(pdf page number not the one written in top right)
     queNo:Joi.number().integer()
     nAttempted: 0,
     nCorrect: 0,
@@ -93,8 +94,14 @@ def main():
 
                 for question in questions:
                     if question.get('queImg'):
-                        question['queImg'] = crop_question(temp_pdf_path,question['pagenum'],question['queNo'],r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
+                        question['queImg'] = crop_question(temp_pdf_path,question['que_pagenum'],question['queNo'],f"{subject}/{topic}/questions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
+                    if question.get('solutionImage'):
+                        question['solutionImage'] = crop_question(temp_pdf_path,question['solution_pagenum'],question['queNo'],f"{subject}/{topic}/solutions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
 
+                questions = [
+                    {k: v for k, v in q.items() if k not in ['que_pagenum', 'solution_pagenum']}
+                    for q in questions
+                ]
                 results = save_to_mongodb(questions)
                 for idx, (question, inserted_id) in enumerate(zip(questions, results), start=1):
                     st.success(f"✅ Question {idx} uploaded successfully!")
@@ -127,7 +134,14 @@ def main():
                     if question.get("answer"):
                         st.markdown(f"Answer: {question.get("answer")}", unsafe_allow_html=True)
                     solution = question.get("solutionText", "")
-                    if solution:
+                    if question.get("solutionImage"):
+                        drive_img_url = f"https://drive.google.com/uc?export=view&id={question['solutionImage']}"
+                        view_url = f"https://drive.google.com/file/d/{question['solutionImage']}/view?usp=sharing"
+
+                        st.markdown(f"[🔗 View on Google Drive]({view_url})")
+                        st.image(drive_img_url, caption="Solution Image", use_container_width=True)
+
+                    elif solution:
                         if any(sym in solution for sym in ["\\(", "\\)", "$"]):
                             st.markdown(f"Solution: {solution.replace("\\(", "$").replace("\\)", "$")}", unsafe_allow_html=True)
                         else:
