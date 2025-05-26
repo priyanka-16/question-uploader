@@ -4,24 +4,23 @@ import json
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
-import streamlit as st  # Optional: remove if not using Streamlit secrets
+import streamlit as st
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 
 def get_drive_service():
-    # Option 1: Load from Streamlit secrets (recommended for Streamlit Cloud)
+    # Load credentials from Streamlit secrets if available
     if "google" in st.secrets:
-        creds_info = json.loads(st.secrets["google"]["service_account_json"])
-        creds = service_account.Credentials.from_service_account_info(creds_info, scopes=SCOPES)
-    # # Option 2: Load from local file (for local development)
-    # elif os.path.exists("service_account.json"):
-    #     creds = service_account.Credentials.from_service_account_file("service_account.json", scopes=SCOPES)
+        service_account_info = st.secrets["google"]
+        creds = service_account.Credentials.from_service_account_info(service_account_info, scopes=SCOPES)
+    # Or load from local file if running locally
+    elif os.path.exists("service_account.json"):
+        creds = service_account.Credentials.from_service_account_file("service_account.json", scopes=SCOPES)
     else:
-        raise Exception("Service account credentials not found.")
+        raise Exception("No service account credentials found.")
 
-    return build('drive', 'v3', credentials=creds)
-
+    return build("drive", "v3", credentials=creds)
 
 def create_folder_if_not_exists(service, name, parent_id=None):
     query = f"name='{name}' and mimeType='application/vnd.google-apps.folder'"
