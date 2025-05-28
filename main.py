@@ -6,13 +6,10 @@ import tempfile
 import os
 from image_handler import crop_question
 from db_handler import save_to_mongodb
-from PyPDF2 import PdfReader, PdfWriter
-import ast
-
 subject_ids={"maths":"66cf8a7fb60054fa64dad203","physics":"66cf8ad9b60054fa64dad207","biology":"66cf8aeab60054fa64dad20b","chemistry":"66cf8ae3b60054fa64dad209"}
 generativeai.configure(api_key=st.secrets['gemini']['api_key'])
 
-PROMPT_TEMPLATE = """Please pick question number {quenos} from first file attached and convert to text / latex code in following json format. Answers and solutions of all question are also given in second file attached. Please match question number and pick answer and solution from these pages as well. 
+PROMPT_TEMPLATE = """Please pick question number {quenos} below HOME ASSIGNMENT section in page number {question_page_numbers} and convert to text / latex code in following json format. Answers and solutions of all question are also given later in page number {solution_page_numbers} in the same pdf. Please match question number and pick answer and solutionText from these pages as well.
     class: {class_},
     subject: {subject_id},
     topic: {topic},
@@ -20,21 +17,23 @@ PROMPT_TEMPLATE = """Please pick question number {quenos} from first file attach
     difficulty: Joi.number().integer().min(1).max(5).required(),
     type: "MCQ",
     queText: Joi.string().allow(null, ""),
-    queImg: Joi.string().allow(null, ""), //If any diagram in either question or option is there put yes here
+    queImg: Joi.string().allow(null, ""), //If diagram in question or option is there put yes here
     optA: Joi.string().allow(null, ""),
     optB: Joi.string().allow(null, ""),
     optC: Joi.string().allow(null, ""),
     optD: Joi.string().allow(null, ""),
     answer: Joi.string().required().valid("A", "B", "C", "D"),
     solutionText: Joi.string().allow(null, ""),
-    solutionImage: Joi.string().allow(null, ""), //If any diagram in solution is there put yes here
-    source: :”Karnataka study material”, 
+    solutionImage: Joi.string().allow(null, ""), //If diagram in solution is there put yes here
+    source: :”Karnataka study material”,
+    que_pagenum:Joi.number().integer(), #(pdf page number not the one written in top right)
+    solution_pagenum:Joi.number().integer(), #(pdf page number not the one written in top right)
     queNo:Joi.number().integer()
     nAttempted: 0,
     nCorrect: 0,
     nWrong: 0,
 
- Just match the question number and  populate quetext, optA, optB, optC, optD for each question after converting each question in the attached pdf to latex code if required. Please don't create new question of your own. Populate difficulty as per your assessment of question (5 being hardest and 1 is easiest). Subtopics names you can select one of - {subtopics}
+ Just match the question number and  populate quetext, optA, optB, optC, optD for each question after converting each question in the attached pdf to latext / links if required. Please don't create new question of your own. Populate difficulty as per your assessment of question (5 being hardest and 1 is easiest). Subtopics names you can select one of - {subtopics}
  """
 
 def extract_json_from_response(text):
@@ -46,26 +45,10 @@ def load_topics(subject, grade):
     file_path = f"topics/{subject.lower()}_{grade}.json"
 
     if not os.path.exists(file_path):
-        print(f"File {file_path} not found.")
         return {}
 
     with open(file_path, 'r', encoding='utf-8') as file:
         return json.load(file)
-
-def extract_pdf_pages(original_path, page_numbers):
-    reader = PdfReader(original_path)
-    writer = PdfWriter()
-
-    for page_num in page_numbers:
-        if 0 <= page_num < len(reader.pages):
-            print(f"writing page {page_num}")
-            writer.add_page(reader.pages[page_num])
-
-    temp_out = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-    with open(temp_out.name, "wb") as out_pdf:
-        writer.write(out_pdf)
-
-    return temp_out.name  # return path to the new PDF
 
 def main():
     st.set_page_config(page_title="Question Uploader", layout="centered")
@@ -93,7 +76,7 @@ def main():
         print(f"subtopics:{subtopics}")
 
         with st.spinner("Processing..."):
-            prompt = PROMPT_TEMPLATE.format(class_=class_, topic=topic, quenos=quenos, subtopics=subtopics, subject_id=subject_id)
+            prompt = PROMPT_TEMPLATE.format(class_=class_, topic=topic, quenos=quenos, subtopics=subtopics, subject_id=subject_id, question_page_numbers=question_page_numbers, solution_page_numbers=solution_page_numbers)
 
             # Save uploaded file temporarily
             with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
@@ -102,25 +85,8 @@ def main():
 
             try:
                 model = generativeai.GenerativeModel("gemini-2.0-flash")
-                #response = model.generate_content([prompt, generativeai.upload_file(temp_pdf_path)])
-
-                # Convert 1-based page numbers (user input) to 0-based for PyPDF2
-                q_pages = [int(p) - 1 for p in ast.literal_eval(question_page_numbers)]
-                s_pages = [int(p) - 1 for p in ast.literal_eval(solution_page_numbers)]
-
-                # Extract PDFs
-                question_pdf_path = extract_pdf_pages(temp_pdf_path, q_pages)
-                solution_pdf_path = extract_pdf_pages(temp_pdf_path, s_pages)
-
-                # Upload separately
-                q_pdf = generativeai.upload_file(question_pdf_path)
-                s_pdf = generativeai.upload_file(solution_pdf_path)
-
-                # Send both with the prompt
-                response = model.generate_content([prompt, q_pdf, s_pdf])
-                print("response received")
+                response = model.generate_content([prompt, generativeai.upload_file(temp_pdf_path)])
                 questions = extract_json_from_response(response.text)
-                print("response converted to JSON")
 
                 if not questions:
                     st.error("Failed to extract JSON from Gemini response.")
@@ -128,18 +94,15 @@ def main():
 
                 for question in questions:
                     if question.get('queImg'):
-                        print(f"since question#{question['queNo']} requires image trying to crop")
-                        question['queImg'] = crop_question(question_pdf_path,question['queNo'],f"{subject}/{topic}/questions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
-                        print("cropped")
+                        question['queImg'] = crop_question(temp_pdf_path,question['que_pagenum'],question['queNo'],f"{subject}/{topic}/questions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
                     if question.get('solutionImage'):
-                        print(f"since solution#{question['queNo']} requires image trying to crop")
-                        question['solutionImage'] = crop_question(solution_pdf_path,question['queNo'],f"{subject}/{topic}/solutions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
-                        print("cropped")
+                        question['solutionImage'] = crop_question(temp_pdf_path,question['solution_pagenum'],question['queNo'],f"{subject}/{topic}/solutions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
 
-                for question in questions:
-                    question.pop("queNo", None)
+                questions = [
+                    {k: v for k, v in q.items() if k not in ['que_pagenum', 'solution_pagenum']}
+                    for q in questions
+                ]
                 results = save_to_mongodb(questions)
-
                 for idx, (question, inserted_id) in enumerate(zip(questions, results), start=1):
                     st.success(f"✅ Question {idx} uploaded successfully!")
 

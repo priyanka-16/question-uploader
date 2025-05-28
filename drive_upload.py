@@ -1,26 +1,22 @@
 import io
 import os
-import json
-from google.oauth2 import service_account
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
-import streamlit as st
 
-SCOPES = ['https://www.googleapis.com/auth/drive']
-
+SCOPES = ['https://www.googleapis.com/auth/drive.file']
 
 def get_drive_service():
-    # Load credentials from Streamlit secrets if available
-    if "google" in st.secrets:
-        service_account_info = st.secrets["google"]
-        creds = service_account.Credentials.from_service_account_info(service_account_info, scopes=SCOPES)
-    # Or load from local file if running locally
-    elif os.path.exists("service_account.json"):
-        creds = service_account.Credentials.from_service_account_file("service_account.json", scopes=SCOPES)
-    else:
-        raise Exception("No service account credentials found.")
-
-    return build("drive", "v3", credentials=creds)
+    creds = None
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    if not creds or not creds.valid:
+        flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+        creds = flow.run_local_server(port=0)
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+    return build('drive', 'v3', credentials=creds)
 
 def create_folder_if_not_exists(service, name, parent_id=None):
     query = f"name='{name}' and mimeType='application/vnd.google-apps.folder'"
@@ -30,7 +26,6 @@ def create_folder_if_not_exists(service, name, parent_id=None):
     items = results.get('files', [])
     if items:
         return items[0]['id']
-
     # Create folder
     file_metadata = {
         'name': name,
@@ -40,7 +35,6 @@ def create_folder_if_not_exists(service, name, parent_id=None):
         file_metadata['parents'] = [parent_id]
     folder = service.files().create(body=file_metadata, fields='id').execute()
     return folder.get('id')
-
 
 def upload_pil_image_to_drive(pil_image, full_path, mime_type='image/png'):
     path_parts = full_path.strip("/").split("/")
@@ -72,4 +66,4 @@ def upload_pil_image_to_drive(pil_image, full_path, mime_type='image/png'):
 
     # Make file public
     service.permissions().create(fileId=file_id, body={'type': 'anyone', 'role': 'reader'}).execute()
-    return uploaded_file['webViewLink']
+    return file_id

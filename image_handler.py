@@ -5,7 +5,6 @@ from pytesseract import Output
 import re
 from drive_upload import upload_pil_image_to_drive
 from PyPDF2 import PdfReader
-import fitz
 
 def get_question_index(ocr, pattern):
     for i, word in enumerate(ocr["text"]):
@@ -19,18 +18,13 @@ def find_word_index(ocr, keywords):
             return i
     return None
 
-def load_ocr_image(pdf_path, que_num, poppler_path=None):
-    q_num_pattern = re.compile(rf"^{que_num}\.?$")
-    doc = fitz.open(pdf_path)
-    page_num = None
-    for page in range(len(doc)):
-        images = convert_from_path(pdf_path, dpi=300, first_page=page+1, last_page=page+1, poppler_path=poppler_path)
-        image = images[0]
-        ocr = pytesseract.image_to_data(image, output_type=Output.DICT)
-        if get_question_index(ocr, q_num_pattern) is not None:
-            return image, ocr, page + 1
-    print(f"Question {que_num} not found in the PDF.")
-    return None, None, None
+def load_ocr_image(pdf_path, page_num, poppler_path=None):
+    images = convert_from_path(pdf_path, dpi=300, first_page=page_num, last_page=page_num, poppler_path=poppler_path)
+    if not images:
+        return None, None
+    image = images[0]
+    ocr = pytesseract.image_to_data(image, output_type=Output.DICT)
+    return image, ocr
 
 def is_last_page(pdf_path, page_num):
     reader = PdfReader(pdf_path)
@@ -63,19 +57,19 @@ def stitch_images_vertically(img1, img2):
     stitched.paste(img2, (0, img1.height))
     return stitched
 
-def crop_question(pdf_path, que_num, full_path, poppler_path=None):
-    image, ocr, page_num = load_ocr_image(pdf_path, que_num, poppler_path)
+def crop_question(pdf_path, page_num, question_number, full_path, poppler_path=None):
+    image, ocr = load_ocr_image(pdf_path, page_num, poppler_path)
     if not image:
         print("Page not found.")
         return
 
-    q_num_pattern = re.compile(rf"^{que_num}\.?$")
-    next_q_pattern = re.compile(rf"^{que_num + 1}\.?$")
+    q_num_pattern = re.compile(rf"^{question_number}\.?$")
+    next_q_pattern = re.compile(rf"^{question_number + 1}\.?$")
     q_index = get_question_index(ocr, q_num_pattern)
     next_q_index = get_question_index(ocr, next_q_pattern)
 
     if q_index is None:
-        print(f"Question {que_num} not found.")
+        print(f"Question {question_number} not found.")
         return
 
     left = ocr["left"][q_index] + 50
@@ -90,9 +84,7 @@ def crop_question(pdf_path, que_num, full_path, poppler_path=None):
             cropped = stitch_cropped(image, left, top, right, next_q_index, ocr)
     else:
         if not is_last_page(pdf_path, page_num):
-            images = convert_from_path(pdf_path, dpi=300, first_page=page_num + 1, last_page=page_num + 1, poppler_path=poppler_path)
-            image_next = images[0]
-            ocr_next = pytesseract.image_to_data(image_next, output_type=Output.DICT)
+            image_next, ocr_next = load_ocr_image(pdf_path, page_num + 1, poppler_path)
             if not image_next:
                 print("Next page missing.")
                 return
@@ -111,6 +103,6 @@ def crop_question(pdf_path, que_num, full_path, poppler_path=None):
         else:
             bottom = ocr["top"][-1]  # fallback to end of page
             cropped = image.crop((left, top, right, bottom))
-    print("image cropped now trying to upload to drive")
+
     link = upload_pil_image_to_drive(cropped, f"{full_path}.png")
     return link
