@@ -131,12 +131,12 @@ def main():
                             st.write(text)
 
                         # Render options
-                        # options = ['A', 'B', 'C', 'D']
-                        # for opt in options:
-                        #     key = f"opt{opt}"
-                        #     value = question.get(key, "")
-                        #     if value:
-                        #         st.markdown(f"{opt}) {value}")
+                        options = ['A', 'B', 'C', 'D']
+                        for opt in options:
+                            key = f"opt{opt}"
+                            value = question.get(key, "")
+                            if value:
+                                st.markdown(f"{opt}) {value}")
                     if question.get("answer"):
                         st.markdown(f"Answer: {question.get("answer")}", unsafe_allow_html=True)
                     solution = question.get("solutionText", "")
