@@ -6,6 +6,12 @@ import tempfile
 import os
 from image_handler import crop_question
 from db_handler import save_to_mongodb
+import platform
+
+if platform.system() == "Windows":
+    poppler_path = r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin"
+else:
+    poppler_path = "/usr/bin"  # Where poppler-utils installs on Streamlit Cloud
 subject_ids={"maths":"66cf8a7fb60054fa64dad203","physics":"66cf8ad9b60054fa64dad207","biology":"66cf8aeab60054fa64dad20b","chemistry":"66cf8ae3b60054fa64dad209"}
 generativeai.configure(api_key=st.secrets['gemini']['api_key'])
 
@@ -94,9 +100,9 @@ def main():
 
                 for question in questions:
                     if question.get('queImg'):
-                        question['queImg'] = crop_question(temp_pdf_path,question['que_pagenum'],question['queNo'],f"{subject}/{topic}/questions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
+                        question['queImg'] = crop_question(temp_pdf_path,question['que_pagenum'],question['queNo'],f"{subject}/{topic}/questions/{question['queNo']}",poppler_path)
                     if question.get('solutionImage'):
-                        question['solutionImage'] = crop_question(temp_pdf_path,question['solution_pagenum'],question['queNo'],f"{subject}/{topic}/solutions/{question['queNo']}",r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin")
+                        question['solutionImage'] = crop_question(temp_pdf_path,question['solution_pagenum'],question['queNo'],f"{subject}/{topic}/solutions/{question['queNo']}",poppler_path)
 
                 questions = [
                     {k: v for k, v in q.items() if k not in ['que_pagenum', 'solution_pagenum']}
@@ -125,12 +131,12 @@ def main():
                             st.write(text)
 
                         # Render options
-                        options = ['A', 'B', 'C', 'D']
-                        for opt in options:
-                            key = f"opt{opt}"
-                            value = question.get(key, "")
-                            if value:
-                                st.markdown(f"{opt}) {value}")
+                        # options = ['A', 'B', 'C', 'D']
+                        # for opt in options:
+                        #     key = f"opt{opt}"
+                        #     value = question.get(key, "")
+                        #     if value:
+                        #         st.markdown(f"{opt}) {value}")
                     if question.get("answer"):
                         st.markdown(f"Answer: {question.get("answer")}", unsafe_allow_html=True)
                     solution = question.get("solutionText", "")
