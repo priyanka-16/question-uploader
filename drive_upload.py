@@ -1,22 +1,41 @@
 import io
-import os
+import streamlit as st
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
+import json
 
 SCOPES = ['https://www.googleapis.com/auth/drive.file']
 
 def get_drive_service():
     creds = None
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+
+    # Load creds from session state if available
+    if "credentials" in st.session_state:
+        creds_data = st.session_state["credentials"]
+        creds = Credentials.from_authorized_user_info(creds_data, SCOPES)
+
+    # If no creds or expired, do OAuth flow
     if not creds or not creds.valid:
-        flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+        # Load client config from secrets
+        client_config = {
+            "installed": {
+                "client_id": st.secrets["google"]["client_id"],
+                "client_secret": st.secrets["google"]["client_secret"],
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "redirect_uris": ["http://localhost"]
+            }
+        }
+        flow = InstalledAppFlow.from_client_config(client_config, SCOPES)
         creds = flow.run_local_server(port=0)
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
+
+        # Save creds info to session state for reuse
+        st.session_state["credentials"] = json.loads(creds.to_json())
+
     return build('drive', 'v3', credentials=creds)
+
 
 def create_folder_if_not_exists(service, name, parent_id=None):
     query = f"name='{name}' and mimeType='application/vnd.google-apps.folder'"
@@ -35,6 +54,7 @@ def create_folder_if_not_exists(service, name, parent_id=None):
         file_metadata['parents'] = [parent_id]
     folder = service.files().create(body=file_metadata, fields='id').execute()
     return folder.get('id')
+
 
 def upload_pil_image_to_drive(pil_image, full_path, mime_type='image/png'):
     path_parts = full_path.strip("/").split("/")
