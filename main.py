@@ -119,7 +119,7 @@ def main():
                         view_url = f"https://drive.google.com/file/d/{question['queImg']}/view?usp=sharing"
 
                         st.markdown(f"[🔗 View on Google Drive]({view_url})")
-                        st.image(drive_img_url, caption="Question Image", use_container_width=True)
+                        st.image(drive_img_url, caption="Question Image", output_format="auto")
 
                     elif question.get("queText"):
                         text = question["queText"]
@@ -145,7 +145,7 @@ def main():
                         view_url = f"https://drive.google.com/file/d/{question['solutionImage']}/view?usp=sharing"
 
                         st.markdown(f"[🔗 View on Google Drive]({view_url})")
-                        st.image(drive_img_url, caption="Solution Image", use_container_width=True)
+                        st.image(drive_img_url, caption="Solution Image", output_format="auto")
 
                     elif solution:
                         if any(sym in solution for sym in ["\\(", "\\)", "$"]):
