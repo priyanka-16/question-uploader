@@ -29,7 +29,7 @@ def get_drive_service():
             }
         }
         flow = InstalledAppFlow.from_client_config(client_config, SCOPES)
-        creds = flow.run_local_server(port=0)
+        creds = flow.run_console()
 
         # Save creds info to session state for reuse
         st.session_state["credentials"] = json.loads(creds.to_json())
