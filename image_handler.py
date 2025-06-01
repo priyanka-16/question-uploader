@@ -63,7 +63,7 @@ def stitch_images_vertically(img1, img2):
     stitched.paste(img2, (0, img1.height))
     return stitched
 
-def crop_question(pdf_path, question_number, full_path, poppler_path=None):
+def crop_question(pdf_path, question_number, full_path, creds, poppler_path=None):
     image, ocr, page_num = load_ocr_image(pdf_path, question_number, poppler_path)
     if not image:
         print("Page not found.")
@@ -112,5 +112,5 @@ def crop_question(pdf_path, question_number, full_path, poppler_path=None):
             bottom = ocr["top"][-1]  # fallback to end of page
             cropped = image.crop((left, top, right, bottom))
     print("image cropped now trying to upload to drive")
-    link = upload_pil_image_to_drive(cropped, f"{full_path}.png")
+    link = upload_pil_image_to_drive(cropped, f"{full_path}.png", creds)
     return link

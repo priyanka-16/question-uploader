@@ -9,6 +9,7 @@ from db_handler import save_to_mongodb
 import platform
 from PyPDF2 import PdfReader, PdfWriter
 import ast
+from get_drive_creds import get_drive_creds
 
 if platform.system() == "Windows":
     poppler_path = r"C:\Users\Aayush Gajwani\Downloads\Release-24.08.0-0\poppler-24.08.0\Library\bin"
@@ -87,11 +88,15 @@ def main():
     question_page_numbers = st.sidebar.text_input("Question Page Numbers")
     solution_page_numbers = st.sidebar.text_input("Solution Page Numbers")
     uploaded_file = st.sidebar.file_uploader("Upload PDF", type=["pdf"])
+    creds = get_drive_creds()
 
     if st.sidebar.button("Process file & Generate Questions"):
         if not uploaded_file:
             st.sidebar.warning("Please upload a PDF file.")
             return
+
+        if creds is None:
+            st.stop()
 
         print(f"quenos:{quenos}, quepg:{question_page_numbers}, solpg:{solution_page_numbers}, class:{class_}, subject:{subject}, topic:{topic}")
         print(f"subtopics:{subtopics}")
@@ -131,10 +136,10 @@ def main():
                 for question in questions:
                     if question.get('queImg'):
                         print(f"since question#{question['queNo']} requires image trying to crop")
-                        question['queImg'] = crop_question(question_pdf_path,question['queNo'],f"{subject}/{topic}/questions/{question['queNo']}",poppler_path)
+                        question['queImg'] = crop_question(question_pdf_path,question['queNo'],f"{subject}/{topic}/questions/{question['queNo']}",creds, poppler_path)
                     if question.get('solutionImage'):
                         print(f"since solution#{question['queNo']} requires image trying to crop")
-                        question['solutionImage'] = crop_question(solution_pdf_path,question['queNo'],f"{subject}/{topic}/solutions/{question['queNo']}",poppler_path)
+                        question['solutionImage'] = crop_question(solution_pdf_path,question['queNo'],f"{subject}/{topic}/solutions/{question['queNo']}",creds, poppler_path)
 
                 results = save_to_mongodb(questions)
                 for idx, (question, inserted_id) in enumerate(zip(questions, results), start=1):
@@ -151,7 +156,6 @@ def main():
 
                     elif question.get("queText"):
                         text = question["queText"]
-
                         if any(sym in text for sym in ["\\(", "\\)", "$"]):
                             # Render using markdown with MathJax support
                             st.markdown((text.replace("\\(", "$").replace("\\)", "$")).replace("$$","$"), unsafe_allow_html=True)
