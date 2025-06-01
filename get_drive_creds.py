@@ -2,10 +2,9 @@ import streamlit as st
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import Flow
 import json
-import platform
 
-# Set platform-based redirect URI
-redirect_uri = "http://localhost:8501" if platform.system() == "Windows" else "https://mainpy-7m9yckcxfjfwwjujjwfrfs.streamlit.app/"
+# Set to "http://localhost:8501" when operating locally
+redirect_uri = "https://mainpy-7m9yckcxfjfwwjujjwfrfs.streamlit.app/"
 
 SCOPES = ['https://www.googleapis.com/auth/drive.file']
 
