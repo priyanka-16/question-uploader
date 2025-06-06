@@ -91,5 +91,33 @@
         "Displacement Current",
         "Electromagnetic Waves",
         "Electromagnetic Spectrum"
+    ],
+    "Ray Optics and Optical Instruments": [
+        "Introduction", "Reflection of Light by Spherical Mirrors", "Refraction", "Total Internal Reflection",
+        "Refraction at Spherical Surfaces and by Lenses", "Refraction through a Prism", "Optical Instruments"
+    ],
+    "Wave Optics": [
+        "Introduction", "Huygens Principle", "Refraction and Reflection of Plane Waves using Huygens Principle",
+        "Coherent and Incoherent Addition of Waves", "Interference of Light Waves and Young’s Experiment",
+        "Diffraction", "Polarisation"
+    ],
+    "Dual Nature of Radiation and Matter": [
+        "Introduction", "Electron Emission", "Photoelectric Effect", "Experimental Study of Photoelectric Effect",
+        "Photoelectric Effect and Wave Theory of Light", "Einstein’s Photoelectric Equation: Energy Quantum of Radiation",
+        "Particle Nature of Light: The Photon", "Wave Nature of Matter"
+    ],
+    "Atoms": [
+        "Introduction", "Alpha-particle Scattering and Rutherford’s Nuclear Model of Atom", "Atomic Spectra",
+        "Bohr Model of the Hydrogen Atom", "The Line Spectra of the Hydrogen Atom",
+        "De Broglie’s Explanation of Bohr’s Second Postulate of Quantisation"
+    ],
+    "Nuclei": [
+        "Introduction", "Atomic Masses and Composition of Nucleus", "Size of the Nucleus",
+        "Mass-Energy and Nuclear Binding Energy", "Nuclear Force", "Radioactivity", "Nuclear Energy"
+    ],
+    "Semiconductor Electronics: Materials, Devices and Simple Circuits": [
+        "Introduction", "Classification of Metals, Conductors and Semiconductors", "Intrinsic Semiconductor",
+        "Extrinsic Semiconductor", "p-n Junction", "Semiconductor Diode",
+        "Application of Junction Diode as a Rectifier"
     ]
 }
